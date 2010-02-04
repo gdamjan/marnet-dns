@@ -2,7 +2,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 
 from scrapy.contrib.loader import XPathItemLoader
-from scrapy.contrib.loader.processor import TakeFirst, Compose
+from scrapy.contrib.loader.processor import TakeFirst, Compose, MapCompose
 
 from scrapy.selector import HtmlXPathSelector
 from scrapy.utils.url import url_query_parameter
@@ -13,6 +13,7 @@ import time
 
 
 class MarnetLoader(XPathItemLoader):
+    default_input_processor = MapCompose(unicode)
     default_output_processor = TakeFirst()
     dns_out = Compose(lambda v: zip(v[::2], v[1::2]))
 
