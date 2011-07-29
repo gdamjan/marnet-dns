@@ -19,7 +19,8 @@ class MarnetLoader(XPathItemLoader):
 
 
 class MarnetSpider(CrawlSpider):
-    domain_name = "dns.marnet.net.mk"
+    name = "marnet"
+    allowed_domains = ["dns.marnet.net.mk"]
     start_urls = ["http://dns.marnet.net.mk/registar.php"]
     rules = [
         Rule(SgmlLinkExtractor(allow=[r'registar\.php\?dom=.+']), callback='parse_item'),
