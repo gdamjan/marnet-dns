@@ -23,6 +23,7 @@ HTTPCACHE_DIR = "cache"
 HTTPCACHE_EXPIRATION_SECS = 3200
 DOWNLOAD_DELAY = 0.25    # 250 ms of delay
 
+COUCHDB_URL = "http://localhost:5985/marnet-dns"
 ITEM_PIPELINES = [
     'marnet.pipelines.MarnetPipeline',
 ]
