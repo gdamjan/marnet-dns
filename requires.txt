@@ -1,0 +1,2 @@
+couchdbkit>=0.5.4
+scrapy>=0.12

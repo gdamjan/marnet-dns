@@ -36,11 +36,20 @@ follows each http://dns.marnet.net.mk/registar.php?bukva=<smth> url, and
 scrapes any http://dns.marnet.net.mk/registar.php?dom=domain.name.mk pages it
 finds.
 
+Installation
+~~~~~~~~~~~~
+
+::
+    git clone git://github.com/gdamjan/marnet-dns.git
+    cd marnet-dns
+    export PYTHONUSERBASE=$PWD/env
+    pip install --user -r requires.txt
+
 
 Operation
 ~~~~~~~~~
 
-Run ./scrapy-ctl.py crawl
+Run ``scrapy crawl marnet``
 
 The first time I started it, it worked for 30 minutes, and createad
 a 261MB ./cache/ folder - which suggests that's the amount of
