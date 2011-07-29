@@ -5,11 +5,12 @@
 from couchdbkit import Database
 from scrapy.conf import settings
 
+import time
 
 class MarnetPipeline(object):
     """Store in CouchDB, check if it's new or changed item"""
     def __init__(self):
-        self.db = Database(settings.get('COUCHDB_URL'))
+        self.db = Database(settings['COUCHDB_URL'])
 
     def process_item(self, item, spider):
         """item is an instance of MarnetItem,
@@ -18,21 +19,30 @@ class MarnetPipeline(object):
         check if the domain exists in the database, and if so compare for
         differences. If no difference exists do nothing.
         """
+        _rev = None
+        seq = None
         db = self.db
-        data = dict(item)
-        doc_id = data.pop('domain')
+        new_data = dict(item)
+        doc_id = new_data['domain']
+        # check if we already have it in the database
         if doc_id in db:
-            old_data = db.get(doc_id)
-            data['_rev'] = old_data['_rev']
-            if compare(old_data, data):
+            old_doc = db.get(doc_id)
+            _rev = old_doc['_rev']
+            seq = old_doc.get('seq', 1)
+            old_data = old_doc['data']
+            if old_data == new_data:
+                # no changes, just skip over
                 return item
-            # make a diff, and notify it?
-        db[doc_id] = data
+            # TODO: there are changes!
+            #       perhaps make a diff, and notify about it?
+        new_doc = dict(
+                _id = doc_id,
+                data = new_data,
+                last_updated = time.time()
+            )
+        if _rev:
+            new_doc['_rev'] = _rev
+        if seq:
+            new_doc['seq'] = seq + 1
+        db.save_doc(new_doc)
         return item
-
-
-def compare(old_item, new_item):
-    old_item.pop('_id')
-    old_item.pop('last_updated')
-    new_item.pop('last_updated')
-    return old_item == new_item
