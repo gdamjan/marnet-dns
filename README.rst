@@ -40,6 +40,7 @@ Installation
 ~~~~~~~~~~~~
 
 ::
+
     git clone git://github.com/gdamjan/marnet-dns.git
     cd marnet-dns
     export PYTHONUSERBASE=$PWD/env
@@ -49,7 +50,8 @@ Installation
 Operation
 ~~~~~~~~~
 
-Run ``scrapy crawl marnet``
+Set the database COUCHDB_URL in ``marnet/settings.py`` and then just
+run ``scrapy crawl marnet``.
 
 The first time I started it, it worked for 30 minutes, and createad
 a 261MB ./cache/ folder - which suggests that's the amount of
