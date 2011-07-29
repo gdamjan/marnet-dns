@@ -2,7 +2,7 @@ Domeinot 2.0
 ============
 
 Crawls and scrapes the web-site of Marnet_. The MarNET Network Information
-Center (MARNET-MIC) is the registrar for the .mk domain.
+Center (MARNET-NIC) is the registrar for the .mk domain.
 
 .. _Marnet: http://dns.marnet.net.mk/registar.php
 
@@ -50,8 +50,8 @@ Installation
 Operation
 ~~~~~~~~~
 
-Set the database COUCHDB_URL in ``marnet/settings.py`` and then just
-run ``env/bin/scrapy crawl marnet``.
+Set the database COUCHDB_URL in „``marnet/settings.py``“ and then just
+run „``env/bin/scrapy crawl marnet``“.
 
 The first time I started it, it worked for 30 minutes, and createad
 a 261MB ./cache/ folder - which suggests that's the amount of
