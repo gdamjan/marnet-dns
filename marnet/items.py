@@ -12,4 +12,3 @@ class MarnetItem(Item):
     administrative = Field()
     techical = Field()
     dns = Field()
-    last_updated = Field()

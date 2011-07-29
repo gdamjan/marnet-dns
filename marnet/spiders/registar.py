@@ -9,8 +9,6 @@ from scrapy.utils.url import url_query_parameter
 
 from marnet.items import MarnetItem
 
-import time
-
 
 class MarnetLoader(XPathItemLoader):
     default_input_processor = MapCompose(unicode)
@@ -39,7 +37,6 @@ class MarnetSpider(CrawlSpider):
             l.add_xpath('administrative', './/tr[9]/td[2]/text()')
             l.add_xpath('techical', './/tr[13]/td[2]/text()')
             l.add_xpath('dns', './/tr[@align="center"]/td/text()')
-            l.add_value('last_updated', time.time())
             return l.load_item()
 
 
