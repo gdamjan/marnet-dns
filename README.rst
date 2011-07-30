@@ -50,8 +50,11 @@ Installation
 Operation
 ~~~~~~~~~
 
-Set the database COUCHDB_URL in „``marnet/settings.py``“ and then just
-run „``env/bin/scrapy crawl marnet``“.
+Set the database COUCHDB_URL in ``marnet/settings.py`` and then::
+
+    export PYTHONUSERBASE=$PWD/env
+    export PATH=$PYTHONUSERBASE/bin:$PATH
+    scrapy crawl marnet
 
 The first time I started it, it worked for 30 minutes, and createad
 a 261MB ./cache/ folder - which suggests that's the amount of
