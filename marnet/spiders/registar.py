@@ -33,9 +33,10 @@ class MarnetSpider(CrawlSpider):
             l = MarnetLoader(item=MarnetItem(), selector=base)
             l.add_value('domain', dom)
             l.add_xpath('dosie', './/tr/td/div/b/i/text()', re=':(\\d+)')
+            l.add_xpath('datum', './/tr[3]/td[2]/text()')
             l.add_xpath('ime', './/tr[4]/td[2]/text()')
-            l.add_xpath('administrative', './/tr[9]/td[2]/text()')
-            l.add_xpath('techical', './/tr[13]/td[2]/text()')
+            l.add_xpath('administrative', './/tr[11]/td[2]/text()')
+            l.add_xpath('techical', './/tr[15]/td[2]/text()')
             l.add_xpath('dns', './/tr[@align="center"]/td/text()')
             return l.load_item()
 
