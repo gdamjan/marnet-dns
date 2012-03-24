@@ -5,6 +5,10 @@
 
 from scrapy.item import Item, Field
 
+class MarnetItem(Item, dict):
+    pass
+
+"""
 class MarnetItem(Item):
     domain = Field()
     dosie = Field()
@@ -12,3 +16,4 @@ class MarnetItem(Item):
     administrative = Field()
     techical = Field()
     dns = Field()
+"""
